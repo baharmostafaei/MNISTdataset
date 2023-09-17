@@ -19,3 +19,20 @@ def scale(image, lable):
     image /= 255.
     return image, lable
 
+scaled_train_validation_data = mnist_train.map(scale)
+test_data = mnist_test.map(scale)
+
+BUFFER_SIZE = 10000
+
+shuffled_train_validation_data = scaled_train_validation_data.shuffle(BUFFER_SIZE)
+
+validation_data = shuffled_train_validation_data.take(num_validation_sample)
+train_data = shuffled_train_validation_data.skip(num_validation_sample)
+
+BATCH_SIZE = 100
+
+train_data =train_data.batch(BATCH_SIZE)
+validation_data = validation_data.batch(num_validation_sample)
+test_data = test_data.batch(num_test_sample)
+
+validation_inputs ,validation_targets = next(iter(validation_data))
