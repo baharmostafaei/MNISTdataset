@@ -47,3 +47,9 @@ model = tf.keras.squential([
                             tf.keras.layers.Dense(hidden_layer_size, activation='relu'), 
                             tf.keras.layers.Dense(output_size, activation= 'softmax')
 ])
+
+NUM_EPOCHS = 5
+model.compile(train_data, 
+             epochs = NUM_EPOCHS, 
+             validation_data=(validation_inputs, validation_targets), 
+             verbose=2)
