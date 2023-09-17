@@ -53,3 +53,7 @@ model.compile(train_data,
              epochs = NUM_EPOCHS, 
              validation_data=(validation_inputs, validation_targets), 
              verbose=2)
+
+test_loss, test_accuracy= model.evluate(test_data)
+
+print('Test loss: {0:.2f}. Test accuracy: {1:.2f}%'.format(test_loss, test_accuracy*100))
